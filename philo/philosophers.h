@@ -6,7 +6,7 @@
 /*   By: abelfany <abelfany@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:46 by abelfany          #+#    #+#             */
-/*   Updated: 2023/06/22 17:37:45 by abelfany         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:03:33 by abelfany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <libc.h>
 # include <string.h>
 # include <limits.h>
-# include "../../libft/libft.h"
 # include <stdlib.h>
 # include <pthread.h>
 

@@ -6,7 +6,7 @@
 /*   By: abelfany <abelfany@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 22:13:16 by abelfany          #+#    #+#             */
-/*   Updated: 2023/06/22 21:09:12 by abelfany         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:00:45 by abelfany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	var_init(t_var *x, char **str, int ac)
 	pthread_mutex_init(&x -> update, NULL);
 	pthread_mutex_init(&x -> print, NULL);
 	pthread_mutex_init(&x -> mute, NULL);
-	pthread_mutex_init(&x -> died, NULL);
 	pthread_mutex_init(&x -> died, NULL);
 	x->philo = ft_atoi(str[1]);
 	x->sleep = ft_atoi(str[4]);

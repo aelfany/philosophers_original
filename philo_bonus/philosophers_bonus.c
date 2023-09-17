@@ -6,7 +6,7 @@
 /*   By: abelfany <abelfany@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 22:13:16 by abelfany          #+#    #+#             */
-/*   Updated: 2023/07/15 13:21:15 by abelfany         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:57:05 by abelfany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	var_init(t_var *x, char **str, int ac)
 	x->eat = ft_atoi(str[3]);
 	x -> count = 0;
 	x->ac = ac;
-	x->die_flag = 0;
 	if (x->ac == 6)
 		x->h_m_t_eat = ft_atoi(str[5]);
 	else
@@ -79,14 +78,14 @@ void	wait_philo(t_pid *ps_kill, t_philo *lst)
 	ck = waitpid(-1, &lst -> info -> check_die, 0);
 	if (WEXITSTATUS(lst -> info -> check_die) == -1)
 		kill_proc(ps_kill);
-	if (WEXITSTATUS(lst -> info -> check_die) != 0)
-		kill_proc(ps_kill);
 	if (WEXITSTATUS(lst -> info -> check_die) == 2)
 	{
 		count++;
 		if (count == lst -> info -> philo)
 			exit(0);
 	}
+	if (WEXITSTATUS(lst -> info -> check_die) != 0)
+		kill_proc(ps_kill);
 	sem_close(lst -> info -> print);
 	sem_close(lst -> info -> fork);
 	destroy_semaphore();

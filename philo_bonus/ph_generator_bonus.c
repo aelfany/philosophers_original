@@ -6,7 +6,7 @@
 /*   By: abelfany <abelfany@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 01:16:03 by abelfany          #+#    #+#             */
-/*   Updated: 2023/07/15 13:04:48 by abelfany         ###   ########.fr       */
+/*   Updated: 2023/07/15 16:52:44 by abelfany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 void	routine_prainter(t_philo **creat, char *str)
 {
 	sem_wait((*creat)-> info -> print);
-	if ((*creat)-> info -> die_flag == 0)
-	{
-		printf("%llu %d %s\n", current_time(),
-			(*creat)-> ph_id, str);
-	}
+	printf("%llu %d %s\n", current_time(),
+		(*creat)-> ph_id, str);
 	sem_post((*creat)-> info -> print);
 }
 
@@ -35,7 +32,7 @@ void	fork_locker(t_philo **creat)
 void	*philo_routine(t_philo	*creat)
 {
 	if (creat -> ph_id % 2 == 0)
-		_usleep(100, creat);
+		_usleep(creat -> info -> eat, creat);
 	while (1)
 	{
 		if (creat -> info -> philo == 1)
@@ -46,15 +43,17 @@ void	*philo_routine(t_philo	*creat)
 		}
 		check_eat_time(creat);
 		fork_locker(&creat);
+		creat -> last_eat = current_time();
 		if (creat -> info -> h_m_t_eat != -1)
 			creat -> must_eat++;
 		_usleep(creat -> info -> eat, creat);
-		creat -> last_eat = current_time();
 		sem_post(creat -> info -> fork);
 		sem_post(creat -> next -> info -> fork);
 		routine_prainter(&creat, "is sleeping");
 		_usleep(creat -> info -> sleep, creat);
 		routine_prainter(&creat, "is thinking");
+		if (creat->info->sleep < creat->info->eat)
+			_usleep(creat->info->eat - creat->info->sleep, creat);
 	}
 	return (NULL);
 }

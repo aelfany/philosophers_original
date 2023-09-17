@@ -6,7 +6,7 @@
 /*   By: abelfany <abelfany@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 20:59:46 by abelfany          #+#    #+#             */
-/*   Updated: 2023/07/15 13:04:29 by abelfany         ###   ########.fr       */
+/*   Updated: 2023/07/15 15:54:33 by abelfany         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_var
 {
 	int					h_m_t_eat;
 	int					check_die;
-	int					die_flag;
 	sem_t				*print;
 	sem_t				*fork;
 	int					count;
@@ -44,8 +43,8 @@ typedef struct s_var
 typedef struct s_philo
 {
 	unsigned long long	last_eat;
-	t_var				*info;
 	int					must_eat;
+	t_var				*info;
 	int					ph_id;
 	struct s_philo		*next;
 }	t_philo;
